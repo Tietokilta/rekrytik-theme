@@ -1,0 +1,15 @@
+routes:
+
+collections:
+  /partners/:
+    permalink: /partners/{slug}/
+    template: page-partners
+    filter: tag:[hash-mainpartnerpage,hash-partnerpage]
+    data: page.partnersmeta
+  /:
+    permalink: /{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

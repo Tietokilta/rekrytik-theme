@@ -1,0 +1,72 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+
+<style>
+    #tag-page-post-card-large {
+        box-shadow: none;
+        justify-content: center;
+        min-height: fit-content;
+        margin-top: 50px;
+    }
+    @media (max-width: 1001px) {
+        #tag-page-post-card-large {
+            margin-top:24px;
+        }
+    }
+
+    @media (max-width: 501px) {
+        #tag-page-post-card-large {
+            margin-top: 18px;
+        }
+    }
+
+    #tag-page-post-card-content {
+        justify-content: center;
+        width: auto;
+    }
+</style>
+
+<main class="site-main outer">
+    {{#tag}}
+        <div class="inner posts post-card post-card-large" id="tag-page-post-card-large">
+            <div class="post-card-content" id="tag-page-post-card-content">
+                <div class="post-card-content-link">
+                    <header class="post-card-header">
+                        <div class="post-card-primary-tag">Tag</div>
+                        <h2 class="post-card-title">{{name}}</h2>
+                    </header>
+                    <div class="post-card-excerpt">
+                        <p>
+                            {{#if description}}
+                            {{description}}
+                            {{else}}
+                            A collection of {{plural ../pagination.total empty='zero posts' singular='% post' plural='% posts'}}
+                            {{/if}}
+                        </p>
+                    </div>
+                </div>
+            </div>{{!--/.post-card-content--}}
+
+        </div>
+    {{/tag}}
+    <div class="inner posts">
+        
+        {{#unless posts.length}}
+            <div class="no-posts-currently-header">
+                <h1>No openings ... for now 🤞</h1>
+                <a href="/subscribing">Get notified of new ads?</a>
+            </div>
+        {{/unless}}
+        
+        <div class="post-feed">
+            {{#foreach posts}}
+
+                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                {{> "post-card"}}
+
+            {{/foreach}}
+
+        </div>
+    </div>
+</main>
